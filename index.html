@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Web Player</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/fevicol.svg" type="image/svg+xml">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <img src="images/spotify_fixed.svg" alt="Spotify logo" height="22" class="cursor">
+            <img src="images/home.svg" alt="" class="invert cursor" id="home">
+            <div class="signupLogin">
+                <button class="signup cursor">Sign up</button>
+                <button class="login cursor">Log in</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="left">
+            <div class="header-library">
+                <h4>Your Library</h4>
+                <div class="cross cursor"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0,0,256,256">
+                        <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                            style="mix-blend-mode: normal">
+                            <g transform="scale(5.12,5.12)">
+                                <path
+                                    d="M14.40625,13l-1.40625,1.40625l10.625,10.59375l-10.625,10.59375l1.40625,1.40625l10.65625,-10.59375l10.625,10.59375l1.40625,-1.40625l-10.625,-10.59375l10.625,-10.59375l-1.40625,-1.40625l-10.625,10.59375z">
+                                </path>
+                            </g>
+                        </g>
+                    </svg></div>
+            </div>
+            <div class="library">
+                <ul>
+                </ul>
+            </div>
+            <div class="foot">
+                <div>
+                    <span>Legal</span>
+                    <span>Safety & Privacy Center</span>
+                    <span>Privacy Policy</span>
+                    <span>Cookies</span>
+                </div>
+                <div>
+                    <span>About Ads</span>
+                    <span>Accessibility</span>
+                </div>
+                <div>
+                    <span>Cookies</span>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="hamburger cursor"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0,0,256,256">
+                    <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                        stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                        font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                        style="mix-blend-mode: normal">
+                        <g transform="scale(5.12,5.12)">
+                            <path d="M0,9v2h50v-2zM0,24v2h50v-2zM0,39v2h50v-2z"></path>
+                        </g>
+                    </g>
+                </svg></div>
+            <h3>Song Playlists</h3>
+            <div class="playlists">
+
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="song-detail"></div>
+        <div class="playbar">
+            <div class="playicon">
+                <img class="cursor" id="previous" src="images/previous.svg" alt="Previous" width="19" height="19">
+                <img class="cursor" id="playnpause" src="images/play.svg" alt="Play" width="20" height="20">
+                <img class="cursor" id="next" src="images/next.svg" alt="Next" width="19" height="19">
+            </div>
+            <div class="playbar-slider">
+                <div class="song-current-time"></div>
+                <input type="range" class="spotify-slider cursor" min="0" max="100" value="0" />
+                <div class="song-duration">00:00</div>
+            </div>
+        </div>
+        <div class="volumenfullscreen">
+            <img class="volumebtn cursor" src="images/volume.svg" alt="Volume" width="24" height="24">
+            <input type="range" class="volume-slider cursor" min="0" max="100" value="50" />
+            <img src="images/fullscreen.svg" alt="" onclick="fullscreen()" id="fullscreen" class="cursor">
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
