@@ -1,6 +1,15 @@
+/* 
+  🧠 JavaScript Functionality for Spotify Clone
+  This script enables users to add and play local songs without any backend.
+  It handles file selection, song list display, and audio playback.
+*/
+
 let currentSong = new Audio();
+// 🎵 Array to store selected songs
 let songs;
 let currFolder;
+let currentTrackName = ""; // store current song file name
+
 
 //clickable home button
 document.getElementById('home').addEventListener('click', () => { location.href = location.href })
@@ -28,6 +37,7 @@ async function getSongs(folder) {
     let data = await res.json();
     songs = data.songs;
 
+    // Iterating over selected songs
     let songUL = document.querySelector(".library ul");
     songUL.innerHTML = "";
     for (const song of songs) {
@@ -41,6 +51,7 @@ async function getSongs(folder) {
     }
 
     // Click event to play song
+    // 🎧 Event Listener: When a song is clicked
     Array.from(songUL.getElementsByTagName("li")).forEach(e => {
         e.addEventListener("click", () => {
             playMusic(e.querySelector(".song-details").innerHTML.trim());
@@ -54,6 +65,7 @@ async function getSongs(folder) {
 
 //logic to play music
 const playMusic = (track, pause = false) => {
+    currentTrackName = track; // ✅ Update current track name
     currentSong.src = `/${currFolder}/` + track;
     if (!pause) {
         currentSong.play();
@@ -64,27 +76,38 @@ const playMusic = (track, pause = false) => {
 }
 
 
+
 //logic to display albums in the main content
 async function displayAlbums() {
     const albumList = [
         "playlist_1",
         "playlist_2",
-        "playlist_3"
+        "playlist_3",
+        "playlist_4",
+        "playlist_5",
+        "playlist_6",
+        "playlist_7",
+        "playlist_8",
+        "playlist_9",
+        "playlist_10",
+        "playlist_11",
+        "playlist_12"
         // Add more folder names here if you have more albums
     ];
 
+    // Adding the song item to the song list
     const cardContainer = document.querySelector(".playlists");
     cardContainer.innerHTML = "";
 
     for (let folder of albumList) {
         try {
-            const res = await fetch(`/${folder}/info.json`);
+            const res = await fetch(`/songs/${folder}/info.json`);
             const info = await res.json();
 
             cardContainer.innerHTML += `
                 <div class="card cursor" data-folder="${folder}">
                     <div class="image">
-                        <img class="image-img" src="/${folder}/cover.jpg" alt="">
+                        <img class="image-img" src="/songs/${folder}/cover.jpg" alt="">
                         <img class="image-play-btn" src="images/play_button_black_center.svg" alt="" width="40px" height="40px">
                     </div>
                     <div class="song-title">${info.title}</div>
@@ -99,7 +122,7 @@ async function displayAlbums() {
     // Load the playlist whenever a card is clicked
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
-            songs = await getSongs(`/${item.currentTarget.dataset.folder}`);
+            songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`);
             playMusic(songs[0]);
         });
     });
@@ -152,9 +175,10 @@ function fullscreen() {
     }
 }
 
+
 async function main() {
     // Load a default playlist (first one)
-    await getSongs("/playlist_1");
+    await getSongs("songs/playlist_1");
     playMusic(songs[0], true);
 
     // Display all the albums on the page
@@ -197,20 +221,25 @@ async function main() {
     previous.addEventListener("click", () => {
         currentSong.pause();
         document.getElementById("playnpause").src = "images/play.svg";
-        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
+        let index = songs.indexOf(currentTrackName);
         if (index > 0) {
             playMusic(songs[index - 1]);
         }
     });
 
-    next.addEventListener("click", () => {
+    const nextFunc = () => {
         currentSong.pause();
         document.getElementById("playnpause").src = "images/play.svg";
-        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
+        let index = songs.indexOf(currentTrackName);
         if (index < songs.length - 1) {
             playMusic(songs[index + 1]);
         }
-    });
+    }
+
+    next.addEventListener("click", nextFunc);
+
+    //Logic to auto play the next song
+    currentSong.addEventListener("ended", nextFunc);
 
     // Volume clickable button
     document.querySelector(".volumebtn").addEventListener('click', () => {

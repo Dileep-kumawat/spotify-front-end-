@@ -1,3 +1,9 @@
+<!-- 
+  🎵 Spotify Front-End Clone
+  This HTML file structures the UI for a Spotify-like music player.
+  Users can dynamically add and play songs from their local device without any backend.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,11 +11,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify - Web Player</title>
+    <!-- Linking the CSS file for styling -->
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/fevicol.svg" type="image/svg+xml">
 </head>
 
 <body>
+    <!-- Header Section -->
     <header>
         <nav>
             <img src="images/spotify_fixed.svg" alt="Spotify logo" height="22" class="cursor">
@@ -20,6 +28,7 @@
             </div>
         </nav>
     </header>
+    <!-- Main Content Area -->
     <main>
         <div class="left">
             <div class="header-library">
@@ -38,8 +47,12 @@
                         </g>
                     </svg></div>
             </div>
+
+            <!-- 🎵 Song List -->
+            <!-- This section will display the list of songs added by the user -->
             <div class="library">
                 <ul>
+                    <!-- Songs will be dynamically populated here -->
                 </ul>
             </div>
             <div class="foot">
@@ -77,6 +90,8 @@
         </div>
     </main>
     <footer>
+        <!-- 🎧 Audio Player -->
+        <!-- Controls for playing the selected song -->
         <div class="song-detail"></div>
         <div class="playbar">
             <div class="playicon">
@@ -96,6 +111,7 @@
             <img src="images/fullscreen.svg" alt="" onclick="fullscreen()" id="fullscreen" class="cursor">
         </div>
     </footer>
+    <!-- Linking the JavaScript file for functionality -->
     <script src="script.js"></script>
 </body>
 
